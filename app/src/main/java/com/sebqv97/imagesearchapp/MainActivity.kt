@@ -10,8 +10,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.sebqv97.imagesearchapp.firebase_auth.presentation.AuthScreen
+import com.sebqv97.imagesearchapp.firebase_auth.presentation.LoginScreen
+import com.sebqv97.imagesearchapp.firebase_auth.presentation.RegisterScreen
 import com.sebqv97.imagesearchapp.ui.theme.ImageSearchAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,22 +27,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                   // LoginScreen(Modifier)
+                    RegisterScreen(modifier = Modifier)
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     ImageSearchAppTheme {
-        Greeting("Android")
     }
 }

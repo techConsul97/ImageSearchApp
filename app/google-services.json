@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1062178791959",
+    "project_id": "searchimagesapp",
+    "storage_bucket": "searchimagesapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062178791959:android:10d773b07387d1f2f5f252",
+        "android_client_info": {
+          "package_name": "com.sebqv97.imagesearchapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062178791959-l4gklcs75o39g1vquojb7h2npohfskui.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sebqv97.imagesearchapp",
+            "certificate_hash": "2ff1664c6fcf268516b414075bc5c0d886bd0c95"
+          }
+        },
+        {
+          "client_id": "1062178791959-8nd552eu53jq3921hgenfhumqtd24r5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMbHgdLtLc65rx1lkIZW6OaFuVdLO7Q3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062178791959-8nd552eu53jq3921hgenfhumqtd24r5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
