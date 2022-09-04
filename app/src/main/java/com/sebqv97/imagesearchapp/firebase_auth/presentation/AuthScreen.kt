@@ -13,16 +13,20 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
+import com.ramcosta.composedestinations.annotation.Destination
 import com.sebqv97.imagesearchapp.firebase_auth.data.model.AuthUser
 import com.sebqv97.imagesearchapp.firebase_auth.di.FirebaseModule
 
+@Destination
 @Composable
-fun AuthScreen(viewModel: FirebaseAuthViewModel = hiltViewModel()) {
+fun HomeScreen(viewModel: FirebaseAuthViewModel = hiltViewModel()) {
 
 
     var email  by remember{ mutableStateOf("")}
     var password by remember {mutableStateOf("") }
     val state by viewModel.authState
+
+
     
     Column() {
         TextField(value = email, onValueChange = {email = it}, modifier = Modifier
@@ -39,9 +43,9 @@ fun AuthScreen(viewModel: FirebaseAuthViewModel = hiltViewModel()) {
         Button(onClick = { viewModel.createUserWithCredentials(AuthUser(email = email, password = password)) }) {
 
         }
-        if(state.isSuccessful){
-            Text(text = "User logged in", modifier = Modifier.fillMaxSize())
-        }
+//        if(state.isSuccessful){
+//            Text(text = "User logged in", modifier = Modifier.fillMaxSize())
+//        }
     }
 
 }

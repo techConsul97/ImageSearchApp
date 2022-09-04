@@ -13,9 +13,13 @@ import dagger.hilt.android.components.ViewModelComponent
 @InstallIn(ViewModelComponent::class)
 object DomainModule {
 
-    @Provides
-    fun providesAuthRepository(firebaseAuth: FirebaseAuth):AuthRepository = AuthRepositoryImpl(firebaseAuth)
 
     @Provides
     fun providesAuthUseCase(repository: AuthRepository) = AuthorizeUserUseCase(repository)
+
+    @Provides
+    fun providesAuthRepository(
+        firebaseAuth: FirebaseAuth):AuthRepository = AuthRepositoryImpl(firebaseAuth)
+
+
 }

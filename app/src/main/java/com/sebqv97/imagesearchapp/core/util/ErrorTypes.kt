@@ -1,4 +1,4 @@
-package com.sebqv97.imagesearchapp.util
+package com.sebqv97.imagesearchapp.core.util
 
 sealed class ErrorTypes {
 

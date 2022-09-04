@@ -11,9 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusOrder
 import androidx.compose.ui.graphics.Color
-import com.sebqv97.imagesearchapp.firebase_auth.data.model.AuthUser
 import com.sebqv97.imagesearchapp.firebase_auth.presentation.util.InputType
-import com.sebqv97.imagesearchapp.ui.theme.Shapes
+import com.sebqv97.imagesearchapp.core.ui.theme.Shapes
 
 @Composable
 fun TextInput(

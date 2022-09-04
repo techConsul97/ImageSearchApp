@@ -1,4 +1,4 @@
-package com.sebqv97.imagesearchapp.ui.theme
+package com.sebqv97.imagesearchapp.core.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

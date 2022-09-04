@@ -1,8 +1,7 @@
-package com.sebqv97.imagesearchapp.ui.theme
+package com.sebqv97.imagesearchapp.core.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color

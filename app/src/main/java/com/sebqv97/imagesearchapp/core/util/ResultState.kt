@@ -1,4 +1,4 @@
-package com.sebqv97.imagesearchapp.util
+package com.sebqv97.imagesearchapp.core.util
 
 sealed class ResultState<T>(val data: T? = null, val errorType: ErrorTypes? = null) {
     class Success<T>(data: T) : ResultState<T>(data)

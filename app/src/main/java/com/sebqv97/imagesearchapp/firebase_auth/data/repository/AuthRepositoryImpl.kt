@@ -4,18 +4,19 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.sebqv97.imagesearchapp.firebase_auth.data.model.AuthUser
 import com.sebqv97.imagesearchapp.firebase_auth.domain.repository.AuthRepository
-import com.sebqv97.imagesearchapp.util.Constants
-import com.sebqv97.imagesearchapp.util.ErrorTypes
-import com.sebqv97.imagesearchapp.util.ResultState
+import com.sebqv97.imagesearchapp.core.util.Constants
+import com.sebqv97.imagesearchapp.core.util.ErrorTypes
+import com.sebqv97.imagesearchapp.core.util.ResultState
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val firebaseAuth:FirebaseAuth
+    private val firebaseAuth:FirebaseAuth,
+
 ): AuthRepository {
-    override fun createUser(auth: AuthUser): Flow<ResultState<String>> = callbackFlow {
+    override suspend fun createUser(auth: AuthUser): Flow<ResultState<String>> = callbackFlow {
         trySend(ResultState.Loading<String>())
 
         firebaseAuth.createUserWithEmailAndPassword(auth.email!!,auth.password!!).addOnCompleteListener{
@@ -27,10 +28,11 @@ class AuthRepositoryImpl @Inject constructor(
             trySend(ResultState.Error<String>(ErrorTypes.UserRegistrationFailed()))
         }
         awaitClose{ close() }
+
     }
 
 
-    override fun loginUser(auth: AuthUser): Flow<ResultState<String>> = callbackFlow {
+    override suspend fun loginUser(auth: AuthUser): Flow<ResultState<String>> = callbackFlow {
         trySend(ResultState.Loading<String>())
          firebaseAuth.signInWithEmailAndPassword(auth.email!!,auth.password!!)
              .addOnCompleteListener {
@@ -43,4 +45,5 @@ class AuthRepositoryImpl @Inject constructor(
         }
 
     }
+
 }

@@ -6,8 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sebqv97.imagesearchapp.firebase_auth.data.model.AuthUser
 import com.sebqv97.imagesearchapp.firebase_auth.domain.use_case.AuthorizeUserUseCase
-import com.sebqv97.imagesearchapp.util.ResultState
+import com.sebqv97.imagesearchapp.core.util.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -43,7 +44,8 @@ class FirebaseAuthViewModel @Inject constructor(
             authorizeUserUseCase.loginUser(authUser).collect {
                 when (it) {
                     is ResultState.Success -> {
-                        _authState.value = AuthUserState(isSuccessful = true)
+
+                        _authState.value = AuthUserState(user = authUser)
                     }
                     is ResultState.Error -> {
                         _authState.value = AuthUserState(encounteredError = it.errorType)
@@ -55,5 +57,14 @@ class FirebaseAuthViewModel @Inject constructor(
             }
         }
     }
+
+  suspend  fun googleSignIn(email:String, displayName:String){
+            delay(2000)
+            _authState.value = AuthUserState(user = AuthUser(email = email, displayName = displayName))
+
+
+    }
+
+
 }
 
