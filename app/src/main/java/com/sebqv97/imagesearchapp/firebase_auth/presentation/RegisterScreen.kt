@@ -16,12 +16,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.sebqv97.imagesearchapp.firebase_auth.data.model.AuthUser
 import com.sebqv97.imagesearchapp.firebase_auth.presentation.component.TextInput
+import com.sebqv97.imagesearchapp.firebase_auth.presentation.destinations.LoginScreenDestination
 import com.sebqv97.imagesearchapp.firebase_auth.presentation.util.InputType
 
+
+@Destination
 @Composable
-fun RegisterScreen(modifier: Modifier, viewModel: FirebaseAuthViewModel = hiltViewModel()) {
+fun RegisterScreen(
+
+    //New way of Navigation
+    navigator: DestinationsNavigator,
+    modifier: Modifier = Modifier,
+    viewModel: FirebaseAuthViewModel = hiltViewModel()
+) {
 
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
@@ -73,7 +84,11 @@ fun RegisterScreen(modifier: Modifier, viewModel: FirebaseAuthViewModel = hiltVi
         )
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text("Already have an account?", color = Color.White)
-            TextButton(onClick = {}) {
+            TextButton(onClick =
+            {
+                navigator.navigate(LoginScreenDestination)
+            }
+            ) {
                 Text("SIGN IN")
             }
         }

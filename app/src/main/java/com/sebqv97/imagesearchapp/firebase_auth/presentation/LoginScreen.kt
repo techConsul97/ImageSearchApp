@@ -13,17 +13,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.sebqv97.imagesearchapp.firebase_auth.data.model.AuthUser
 import com.sebqv97.imagesearchapp.firebase_auth.presentation.component.TextInput
+import com.sebqv97.imagesearchapp.firebase_auth.presentation.destinations.RegisterScreenDestination
 import com.sebqv97.imagesearchapp.firebase_auth.presentation.util.InputType
 
+
+@Destination(start = true)
 @Composable
-fun LoginScreen(modifier: Modifier, viewModel: FirebaseAuthViewModel = hiltViewModel()) {
+fun LoginScreen(
+
+    //New way of Navigation
+    navigator:DestinationsNavigator,
+    modifier: Modifier = Modifier,
+    viewModel: FirebaseAuthViewModel = hiltViewModel()
+) {
 
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
@@ -71,7 +81,12 @@ fun LoginScreen(modifier: Modifier, viewModel: FirebaseAuthViewModel = hiltViewM
         )
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text("Don't have an account?", color = Color.White)
-            TextButton(onClick = {}) {
+            TextButton(onClick =
+            {
+                // Usage of the new Navigator
+                navigator.navigate(RegisterScreenDestination)
+            }
+            ) {
                 Text("SIGN UP")
             }
         }
@@ -83,6 +98,6 @@ fun LoginScreen(modifier: Modifier, viewModel: FirebaseAuthViewModel = hiltViewM
 @Preview
 @Composable
 fun LoginPreview() {
-    LoginScreen(modifier = Modifier)
+    //LoginScreen(modifier = Modifier)
 
 }
