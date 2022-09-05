@@ -15,11 +15,11 @@ class AuthResultContract
     @Inject lateinit var googleSignInClient:GoogleSignInClient
 
     override fun createIntent(context: Context, input: Int): Intent =
-        getGoogleSignInClient(context).signInIntent.putExtra("input",input)
+        getGoogleSignInClient(context).signInIntent
 
     override fun parseResult(resultCode: Int, intent: Intent?): Task<GoogleSignInAccount>? {
         return when (resultCode){
-            Activity.RESULT_OK-> GoogleSignIn.getSignedInAccountFromIntent(intent)
+           0-> GoogleSignIn.getSignedInAccountFromIntent(intent)
             else -> null
         }
 

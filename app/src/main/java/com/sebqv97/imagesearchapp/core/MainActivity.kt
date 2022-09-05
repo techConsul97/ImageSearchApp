@@ -14,6 +14,7 @@ import com.ramcosta.composedestinations.DestinationsNavHost
 import com.sebqv97.imagesearchapp.firebase_auth.presentation.NavGraphs
 import com.sebqv97.imagesearchapp.core.ui.theme.ImageSearchAppTheme
 import com.sebqv97.imagesearchapp.feature_image_search.presentation.get_images.GetImagesViewModel
+import com.sebqv97.imagesearchapp.firebase_auth.presentation.RegisterScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,6 +33,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
+
+
             }
         }
     }

@@ -7,6 +7,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -20,6 +21,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.sebqv97.imagesearchapp.firebase_auth.data.model.AuthUser
 import com.sebqv97.imagesearchapp.firebase_auth.presentation.component.TextInput
+import com.sebqv97.imagesearchapp.firebase_auth.presentation.destinations.HomeScreenDestination
 import com.sebqv97.imagesearchapp.firebase_auth.presentation.destinations.LoginScreenDestination
 import com.sebqv97.imagesearchapp.firebase_auth.presentation.util.InputType
 
@@ -38,7 +40,10 @@ fun RegisterScreen(
     val password = remember { mutableStateOf("") }
     val passwordFocusRequester = FocusRequester()
     val focusManager = LocalFocusManager.current
+    val user by remember(viewModel) { viewModel.authState }
 
+
+if(user.user == null) {
     Column(
         modifier = modifier
             .padding(24.dp)
@@ -94,5 +99,6 @@ fun RegisterScreen(
         }
 
     }
+}else navigator.navigate(HomeScreenDestination)
 
 }

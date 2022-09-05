@@ -4,6 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sebqv97.imagesearchapp.core.util.ErrorTypes
 import com.sebqv97.imagesearchapp.firebase_auth.data.model.AuthUser
 import com.sebqv97.imagesearchapp.firebase_auth.domain.use_case.AuthorizeUserUseCase
 import com.sebqv97.imagesearchapp.core.util.ResultState
@@ -22,6 +23,13 @@ class FirebaseAuthViewModel @Inject constructor(
     val authState get() = _authState
 
     fun createUserWithCredentials(authUser: AuthUser) {
+        authUser.run {
+            if(email.isNullOrEmpty() || password.isNullOrEmpty()) {
+                _authState.value = AuthUserState(encounteredError = ErrorTypes.UserLoginFailed())
+                return
+            }
+
+        }
         viewModelScope.launch {
             authorizeUserUseCase.createUser(authUser).collect {
                 when (it) {
@@ -40,6 +48,15 @@ class FirebaseAuthViewModel @Inject constructor(
     }
 
     fun loginUser(authUser: AuthUser) {
+        //check correct input
+
+        authUser.run {
+            if(email.isNullOrEmpty() || password.isNullOrEmpty()) {
+                _authState.value = AuthUserState(encounteredError = ErrorTypes.UserLoginFailed())
+                return
+            }
+
+        }
         viewModelScope.launch {
             authorizeUserUseCase.loginUser(authUser).collect {
                 when (it) {
@@ -61,7 +78,6 @@ class FirebaseAuthViewModel @Inject constructor(
   suspend  fun googleSignIn(email:String, displayName:String){
             delay(2000)
             _authState.value = AuthUserState(user = AuthUser(email = email, displayName = displayName))
-
 
     }
 
