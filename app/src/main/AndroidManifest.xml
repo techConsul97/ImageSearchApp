@@ -20,7 +20,7 @@
             android:name=".firebase_auth.presentation.auth_activities.AuthActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".core.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ImageSearchApp">

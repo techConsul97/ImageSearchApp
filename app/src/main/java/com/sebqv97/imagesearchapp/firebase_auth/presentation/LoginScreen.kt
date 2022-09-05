@@ -69,6 +69,7 @@ fun LoginScreen(
                             email = account.email!!,
                             displayName = account.displayName!!
                         )
+                        navigator.navigate(HomeScreenDestination)
                     }
                 }
             } catch (e: ApiException) {
